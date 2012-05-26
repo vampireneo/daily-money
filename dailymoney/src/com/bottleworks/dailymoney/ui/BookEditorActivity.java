@@ -130,7 +130,6 @@ public class BookEditorActivity extends ContextsActivity implements android.view
         cancelBtn.setOnClickListener(this);
     }
     
-    @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_ok) {
             doOk();
@@ -189,7 +188,6 @@ public class BookEditorActivity extends ContextsActivity implements android.view
     }
     
     class SymbolPositionViewBinder implements SimpleAdapter.ViewBinder{
-        @Override
         public boolean setViewValue(View view, Object data, String text) {
             
             NamedItem item = (NamedItem)data;

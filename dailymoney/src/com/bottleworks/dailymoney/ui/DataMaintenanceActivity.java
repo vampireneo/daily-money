@@ -74,7 +74,6 @@ public class DataMaintenanceActivity extends ContextsActivity implements OnClick
         findViewById(R.id.datamain_backup_db_to_sd).setOnClickListener(this);
     }
 
-    @Override
     public void onClick(View v) {
         if (v.getId() == R.id.datamain_import_csv) {
             doImportCSV();
@@ -112,7 +111,6 @@ public class DataMaintenanceActivity extends ContextsActivity implements OnClick
                 }
             }
 
-            @Override
             public void run() {
                 try {
                     count = Files.copyDatabases(getContexts().getDbFolder(), getContexts().getSdFolder(), now.getTime());
@@ -133,7 +131,6 @@ public class DataMaintenanceActivity extends ContextsActivity implements OnClick
                 GUIs.alert(DataMaintenanceActivity.this, i18n.string(R.string.msg_folder_cleared,workingFolder));
             }
 
-            @Override
             public void run() {
                 File sd = Environment.getExternalStorageDirectory();
                 File folder = new File(sd, workingFolder);
@@ -149,7 +146,6 @@ public class DataMaintenanceActivity extends ContextsActivity implements OnClick
         };
 
         GUIs.confirm(this, i18n.string(R.string.qmsg_clear_folder,workingFolder), new GUIs.OnFinishListener() {
-            @Override
             public boolean onFinish(Object data) {
                 if (((Integer) data).intValue() == GUIs.OK_BUTTON) {
                     GUIs.doBusy(DataMaintenanceActivity.this, job);
@@ -168,7 +164,6 @@ public class DataMaintenanceActivity extends ContextsActivity implements OnClick
                 GUIs.alert(DataMaintenanceActivity.this, R.string.msg_default_created);
             }
 
-            @Override
             public void run() {
                 IDataProvider idp = getContexts().getDataProvider();
                 new DataCreator(idp, i18n).createDefaultAccount();
@@ -176,7 +171,6 @@ public class DataMaintenanceActivity extends ContextsActivity implements OnClick
         };
 
         GUIs.confirm(this, i18n.string(R.string.qmsg_create_default), new GUIs.OnFinishListener() {
-            @Override
             public boolean onFinish(Object data) {
                 if (((Integer) data).intValue() == GUIs.OK_BUTTON) {
                     GUIs.doBusy(DataMaintenanceActivity.this, job);
@@ -192,13 +186,11 @@ public class DataMaintenanceActivity extends ContextsActivity implements OnClick
         
         new AlertDialog.Builder(this).setTitle(i18n.string(R.string.qmsg_reset))
         .setItems(R.array.csv_type_options, new DialogInterface.OnClickListener() {
-            @Override
             public void onClick(DialogInterface dialog, final int which) {
                 final GUIs.IBusyRunnable job = new GUIs.BusyAdapter() {
                     public void onBusyError(Throwable t) {
                         GUIs.error(DataMaintenanceActivity.this, t);
                     }
-                    @Override
                     public void run() {
                         try {
                             _resetDate(which);
@@ -216,7 +208,6 @@ public class DataMaintenanceActivity extends ContextsActivity implements OnClick
         final int workingBookId = getContexts().getWorkingBookId(); 
         new AlertDialog.Builder(this).setTitle(i18n.string(R.string.qmsg_export_csv))
                 .setItems(R.array.csv_type_options, new DialogInterface.OnClickListener() {
-                    @Override
                     public void onClick(DialogInterface dialog, final int which) {
                         final GUIs.IBusyRunnable job = new GUIs.BusyAdapter() {
                             int count = -1;
@@ -231,7 +222,6 @@ public class DataMaintenanceActivity extends ContextsActivity implements OnClick
                                     GUIs.alert(DataMaintenanceActivity.this,R.string.msg_no_csv);
                                 }
                             }
-                            @Override
                             public void run() {
                                 try {
                                     count = _exportToCSV(which,workingBookId);
@@ -249,7 +239,6 @@ public class DataMaintenanceActivity extends ContextsActivity implements OnClick
         final int workingBookId = getContexts().getWorkingBookId(); 
         new AlertDialog.Builder(this).setTitle(i18n.string(R.string.qmsg_import_csv))
                 .setItems(R.array.csv_type_import_options, new DialogInterface.OnClickListener() {
-                    @Override
                     public void onClick(DialogInterface dialog, final int which) {
                         final GUIs.IBusyRunnable job = new GUIs.BusyAdapter() {
                             int count = -1;
@@ -264,7 +253,6 @@ public class DataMaintenanceActivity extends ContextsActivity implements OnClick
                                     GUIs.alert(DataMaintenanceActivity.this,R.string.msg_no_csv);
                                 }
                             }
-                            @Override
                             public void run() {
                                 try {
                                     count = _importFromCSV(which,workingBookId);
@@ -281,7 +269,6 @@ public class DataMaintenanceActivity extends ContextsActivity implements OnClick
     private void doShareCSV() {        
         new AlertDialog.Builder(this).setTitle(i18n.string(R.string.qmsg_share_csv))
                 .setItems(R.array.csv_type_options, new DialogInterface.OnClickListener() {
-                    @Override
                     public void onClick(DialogInterface dialog, final int which) {
                         final GUIs.IBusyRunnable job = new GUIs.BusyAdapter() {
                             int count = -1;
@@ -293,7 +280,6 @@ public class DataMaintenanceActivity extends ContextsActivity implements OnClick
                                     GUIs.alert(DataMaintenanceActivity.this,R.string.msg_no_csv);
                                 }
                             }
-                            @Override
                             public void run() {
                                 try {
                                     count = _shareCSV(which);

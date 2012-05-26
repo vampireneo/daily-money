@@ -73,7 +73,6 @@ public class BookListHelper implements OnItemClickListener{
 
 
 
-    @Override
     public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
         if(parent == listView){
             doEditBook(pos);
@@ -175,7 +174,6 @@ public class BookListHelper implements OnItemClickListener{
     
     class ListViewBinder implements SimpleAdapter.ViewBinder{
 
-        @Override
         public boolean setViewValue(View view, Object data, String text) {
             NamedItem item = (NamedItem)data;
             String name = item.getName();

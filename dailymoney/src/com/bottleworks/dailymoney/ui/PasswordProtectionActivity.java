@@ -23,7 +23,6 @@ public class PasswordProtectionActivity extends ContextsActivity implements OnCl
     }
     
 
-    @Override
     public void onClick(View v) {
         if (v.getId() == R.id.pdprot_ok) {
             doPasswordOk();

@@ -28,17 +28,14 @@ public class SQLiteMasterDataProvider implements IMasterDataProvider {
         this.calHelper = calHelper;
     }
 
-    @Override
     public void init() {
 
     }
 
-    @Override
     public void destroyed() {
         helper.close();
     }
 
-    @Override
     public void reset() {
         SQLiteDatabase db = helper.getWritableDatabase();
         helper.onUpgrade(db, -1, db.getVersion());
@@ -78,7 +75,6 @@ public class SQLiteMasterDataProvider implements IMasterDataProvider {
         values.put(COL_BOOK_NOTE, book.getNote());
     }
 
-    @Override
     public Book findBook(int id) {
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor c = db.query(TB_BOOK, COL_BOOK_ALL, COL_BOOK_ID + " = " + id, null, null, null, null, "1");
@@ -107,7 +103,6 @@ public class SQLiteMasterDataProvider implements IMasterDataProvider {
         return ++bookId;
     }
 
-    @Override
     public void newBook(Book bookail) {
         int id = nextBookId();
         try {
@@ -124,7 +119,6 @@ public class SQLiteMasterDataProvider implements IMasterDataProvider {
         newBookNoCheck(id,book);
     }
     
-    @Override
     public void newBookNoCheck(int id,Book book){
         if(Contexts.DEBUG){
             Logger.d("new book "+id+","+book.getName());
@@ -136,7 +130,6 @@ public class SQLiteMasterDataProvider implements IMasterDataProvider {
         db.insertOrThrow(TB_BOOK, null, cv);
     }
 
-    @Override
     public boolean updateBook(int id, Book book) {
         Book det = findBook(id);
         if (det == null) {
@@ -153,14 +146,12 @@ public class SQLiteMasterDataProvider implements IMasterDataProvider {
         return r>0;
     }
 
-    @Override
     public boolean deleteBook(int id) {
         SQLiteDatabase db = helper.getWritableDatabase();
         boolean r = db.delete(TB_BOOK, COL_BOOK_ID+" = "+id, null) >0 ;
         return r;
     }
 
-    @Override
     public List<Book> listAllBook() {
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor c = null;

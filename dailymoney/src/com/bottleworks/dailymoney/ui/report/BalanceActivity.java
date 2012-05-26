@@ -90,7 +90,6 @@ public class BalanceActivity extends ContextsActivity implements OnClickListener
         initialIntent();
         initialContent();
         GUIs.delayPost(new Runnable() {
-            @Override
             public void run() {
                 reloadData();
             }
@@ -131,7 +130,6 @@ public class BalanceActivity extends ContextsActivity implements OnClickListener
         listViewAdapter = new SimpleAdapter(this, listViewMapList, R.layout.report_balance_item, bindingFrom, bindingTo);
         listViewAdapter.setViewBinder(new SimpleAdapter.ViewBinder(){
 
-            @Override
             public boolean setViewValue(View view, Object data, String text) {
                 NamedItem item = (NamedItem)data;
                 String name = item.getName();
@@ -272,7 +270,6 @@ public class BalanceActivity extends ContextsActivity implements OnClickListener
         GUIs.doBusy(this, new GUIs.BusyAdapter() {
             List<Balance> all = new ArrayList<Balance>();
 
-            @Override
             public void run() {
                 boolean hierarchical = getContexts().isPrefHierarachicalReport();
                 
@@ -374,7 +371,6 @@ public class BalanceActivity extends ContextsActivity implements OnClickListener
 
     }
 
-    @Override
     public void onClick(View v) {
         if (v.getId() == R.id.report_balance_prev) {
             onPrev();
@@ -453,7 +449,6 @@ public class BalanceActivity extends ContextsActivity implements OnClickListener
         } else if (item.getItemId() == R.id.toggle_hierarchical_report) {
             getContexts().setPrefHierarachicalReport(!getContexts().isPrefHierarachicalReport());
             GUIs.delayPost(new Runnable(){
-                @Override
                 public void run() {
                     reloadData();
                 }});
@@ -462,7 +457,6 @@ public class BalanceActivity extends ContextsActivity implements OnClickListener
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if(parent == listView){
             doDetailList(position);
@@ -495,7 +489,6 @@ public class BalanceActivity extends ContextsActivity implements OnClickListener
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == Constants.REQUEST_ACCOUNT_DETAIL_LIST_CODE && resultCode==Activity.RESULT_OK){
             GUIs.delayPost(new Runnable(){
-                @Override
                 public void run() {
                     reloadData();
                 }});
@@ -541,7 +534,6 @@ public class BalanceActivity extends ContextsActivity implements OnClickListener
         
         
         GUIs.doBusy(this, new GUIs.BusyAdapter() {
-            @Override
             public void run() {
                 Balance b = listViewData.get(pos);
                 AccountType at;
@@ -571,7 +563,6 @@ public class BalanceActivity extends ContextsActivity implements OnClickListener
     
     private void doYearlyTimeChart(final int pos){
         GUIs.doBusy(this, new GUIs.BusyAdapter() {
-            @Override
             public void run() {
                 Balance b = listViewData.get(pos);
                 AccountType at;
@@ -612,7 +603,6 @@ public class BalanceActivity extends ContextsActivity implements OnClickListener
     
     private void doYearlyCumulativeTimeChart(final int pos){
         GUIs.doBusy(this, new GUIs.BusyAdapter() {
-            @Override
             public void run() {
                 
                 Balance b = listViewData.get(pos);
@@ -658,7 +648,6 @@ public class BalanceActivity extends ContextsActivity implements OnClickListener
     
     private void doYearlyRunChart(){
         GUIs.doBusy(this, new GUIs.BusyAdapter() {
-            @Override
             public void run() {
                 boolean[] yearly = new boolean[]{false,false,true,true,false};
                 AccountType[] ats = new AccountType[]{AccountType.ASSET,AccountType.LIABILITY,AccountType.INCOME,AccountType.EXPENSE,AccountType.OTHER};

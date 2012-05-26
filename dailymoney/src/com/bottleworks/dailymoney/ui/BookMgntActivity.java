@@ -35,7 +35,6 @@ public class BookMgntActivity extends ContextsActivity {
         initialIntent();
         initialContent();
         GUIs.delayPost(new Runnable() {
-            @Override
             public void run() {
                 reloadData();
             }
@@ -52,7 +51,6 @@ public class BookMgntActivity extends ContextsActivity {
         
         
         bookListHelper = new BookListHelper(this, i18n,true, new BookListHelper.OnBookListener() {
-            @Override
             public void onBookDeleted(Book book) {
                 GUIs.shortToast(BookMgntActivity.this, i18n.string(R.string.msg_book_deleted,book.getName()));
                 reloadData();
@@ -70,7 +68,6 @@ public class BookMgntActivity extends ContextsActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == Constants.REQUEST_BOOK_EDITOR_CODE && resultCode==Activity.RESULT_OK){
             GUIs.delayPost(new Runnable(){
-                @Override
                 public void run() {
                     reloadData();
                 }});
@@ -83,7 +80,6 @@ public class BookMgntActivity extends ContextsActivity {
         GUIs.doBusy(this,new GUIs.BusyAdapter() {
             List<Book> data = null;
             
-            @Override
             public void run() {
                 data = idp.listAllBook();
             }

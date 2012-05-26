@@ -28,12 +28,10 @@ public class SQLiteDataProvider implements IDataProvider {
         this.calHelper = calHelper;
     }
 
-    @Override
     public void init() {
 
     }
 
-    @Override
     public void destroyed() {
         helper.close();
     }
@@ -43,7 +41,6 @@ public class SQLiteDataProvider implements IDataProvider {
         return type + "-" + name;
     }
 
-    @Override
     public void reset() {
         SQLiteDatabase db = helper.getWritableDatabase();
         helper.onUpgrade(db, -1, db.getVersion());
@@ -51,7 +48,6 @@ public class SQLiteDataProvider implements IDataProvider {
         detId_set = false;
     }
 
-    @Override
     public Account findAccount(String id) {
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor c = db.query(TB_ACC, COL_ACC_ALL, COL_ACC_ID + " = ?", new String[] { id }, null, null, null, "1");
@@ -91,13 +87,11 @@ public class SQLiteDataProvider implements IDataProvider {
         values.put(COL_ACC_INITVAL, acc.getInitialValue());
     }
 
-    @Override
     public Account findAccount(String type, String name) {
         String id = normalizeAccountId(type, name);
         return findAccount(id);
     }
 
-    @Override
     public List<Account> listAccount(AccountType type) {
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor c = null;
@@ -118,7 +112,6 @@ public class SQLiteDataProvider implements IDataProvider {
         return result;
     }
 
-    @Override
     public void newAccount(Account account) throws DuplicateKeyException {
         String id = normalizeAccountId(account.getType(), account.getName());
         newAccount(id,account);
@@ -136,7 +129,6 @@ public class SQLiteDataProvider implements IDataProvider {
         newAccountNoCheck(id,account);
     }
     
-    @Override
     public void newAccountNoCheck(String id,Account account){
         if(Contexts.DEBUG){
             Logger.d("new account "+id);
@@ -148,7 +140,6 @@ public class SQLiteDataProvider implements IDataProvider {
         db.insertOrThrow(TB_ACC, null, cv);
     }
 
-    @Override
     public boolean updateAccount(String id, Account account) {
         Account acc = findAccount(id);
         if (acc == null) {
@@ -185,7 +176,6 @@ public class SQLiteDataProvider implements IDataProvider {
         return r > 0;
     }
 
-    @Override
     public boolean deleteAccount(String id) {
         SQLiteDatabase db = helper.getWritableDatabase();
         int r = db.delete(TB_ACC, COL_ACC_ID + " = ?", new String[] { id });
@@ -230,7 +220,6 @@ public class SQLiteDataProvider implements IDataProvider {
         values.put(COL_DET_NOTE, det.getNote());
     }
 
-    @Override
     public Detail findDetail(int id) {
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor c = db.query(TB_DET, COL_DET_ALL, COL_DET_ID + " = " + id, null, null, null, null, "1");
@@ -259,7 +248,6 @@ public class SQLiteDataProvider implements IDataProvider {
         return ++detId;
     }
 
-    @Override
     public void newDetail(Detail detail) {
         int id = nextDetailId();
         try {
@@ -276,7 +264,6 @@ public class SQLiteDataProvider implements IDataProvider {
         newDetailNoCheck(id,detail);
     }
     
-    @Override
     public void newDetailNoCheck(int id,Detail detail){
         if(Contexts.DEBUG){
             Logger.d("new detail "+id+","+detail.getNote());
@@ -289,7 +276,6 @@ public class SQLiteDataProvider implements IDataProvider {
         db.insertOrThrow(TB_DET, null, cv);
     }
 
-    @Override
     public boolean updateDetail(int id, Detail detail) {
         Detail det = findDetail(id);
         if (det == null) {
@@ -307,7 +293,6 @@ public class SQLiteDataProvider implements IDataProvider {
         return r>0;
     }
 
-    @Override
     public boolean deleteDetail(int id) {
         SQLiteDatabase db = helper.getWritableDatabase();
         first = null;
@@ -315,7 +300,6 @@ public class SQLiteDataProvider implements IDataProvider {
         return r>0;
     }
 
-    @Override
     public List<Detail> listAllDetail() {
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor c = null;
@@ -334,7 +318,6 @@ public class SQLiteDataProvider implements IDataProvider {
     
     static final String DET_ORDERBY = COL_DET_DATE +" DESC,"+COL_DET_ID+" DESC";
 
-    @Override
     public List<Detail> listDetail(Date start, Date end, int max) {
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor c = null;
@@ -360,11 +343,9 @@ public class SQLiteDataProvider implements IDataProvider {
         c.close();
         return result;
     }
-    @Override
     public List<Detail> listDetail(Account account, int mode, Date start, Date end,int max) {
         return listDetail(account.getId(),mode,start,end,max);
     }
-    @Override
     public List<Detail> listDetail(String accountId, int mode, Date start, Date end,int max) {
         SQLiteDatabase db = helper.getReadableDatabase();
         StringBuilder where = new StringBuilder();
@@ -423,7 +404,6 @@ public class SQLiteDataProvider implements IDataProvider {
         return result;
     }
     
-    @Override
     public List<Detail> listDetail(AccountType type, int mode,Date start, Date end, int max) {
         SQLiteDatabase db = helper.getReadableDatabase();
 
@@ -463,7 +443,6 @@ public class SQLiteDataProvider implements IDataProvider {
         return result;
     }
     
-    @Override
     public int countDetail(Date start, Date end){
         SQLiteDatabase db = helper.getReadableDatabase();
 
@@ -497,11 +476,9 @@ public class SQLiteDataProvider implements IDataProvider {
         c.close();
         return i;
     }
-    @Override
     public int countDetail(Account account, int mode,Date start, Date end){
         return countDetail(account.getId(),mode,start,end);
     }
-    @Override
     public int countDetail(String accountId, int mode,Date start, Date end){
         SQLiteDatabase db = helper.getReadableDatabase();
         String nestedId = accountId+".%";
@@ -568,7 +545,6 @@ public class SQLiteDataProvider implements IDataProvider {
         return i;
     }
     
-    @Override
     public int countDetail(AccountType type, int mode,Date start, Date end){
         SQLiteDatabase db = helper.getReadableDatabase();
 
@@ -616,7 +592,6 @@ public class SQLiteDataProvider implements IDataProvider {
         return i;
     }
 
-    @Override
     public double sumFrom(AccountType type,Date start, Date end) {
         SQLiteDatabase db = helper.getReadableDatabase();
 
@@ -646,7 +621,6 @@ public class SQLiteDataProvider implements IDataProvider {
         return r;
     }
     
-    @Override
     public double sumFrom(Account acc,Date start, Date end) {
         SQLiteDatabase db = helper.getReadableDatabase();
 
@@ -682,7 +656,6 @@ public class SQLiteDataProvider implements IDataProvider {
         return r;
     }
 
-    @Override
     public double sumTo(AccountType type,Date start, Date end) {
         SQLiteDatabase db = helper.getReadableDatabase();
 
@@ -712,7 +685,6 @@ public class SQLiteDataProvider implements IDataProvider {
         return r;
     }
     
-    @Override
     public double sumTo(Account acc,Date start, Date end) {
         SQLiteDatabase db = helper.getReadableDatabase();
 
@@ -747,7 +719,6 @@ public class SQLiteDataProvider implements IDataProvider {
         return r;
     }
 
-    @Override
     public void deleteAllAccount() {
         SQLiteDatabase db = helper.getWritableDatabase();
         db.delete(TB_ACC, null, null);
@@ -756,7 +727,6 @@ public class SQLiteDataProvider implements IDataProvider {
         
     }
 
-    @Override
     public void deleteAllDetail() {
         SQLiteDatabase db = helper.getWritableDatabase();
         db.delete(TB_DET, null, null);
@@ -772,7 +742,6 @@ public class SQLiteDataProvider implements IDataProvider {
     
     Detail first = null;
     
-    @Override
     public Detail getFirstDetail() {
         if(first!=null) return first;
         SQLiteDatabase db = helper.getReadableDatabase();
@@ -789,7 +758,6 @@ public class SQLiteDataProvider implements IDataProvider {
         return first;
     }
 
-    @Override
     public double sumInitialValue(AccountType type) {
         SQLiteDatabase db = helper.getReadableDatabase();
 

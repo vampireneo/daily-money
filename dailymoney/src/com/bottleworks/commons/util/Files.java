@@ -236,7 +236,6 @@ public class Files {
         if (Environment.MEDIA_MOUNTED.equals(state)) {
             if (sourceFolder.exists()) {
                 String[] filenames = sourceFolder.list(new FilenameFilter() {
-                    @Override
                     public boolean accept(File dir, String filename) {
                         if (filename.startsWith("dm") && filename.endsWith(".db")) {
                             return true;

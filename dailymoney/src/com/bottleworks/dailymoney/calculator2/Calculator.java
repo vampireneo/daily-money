@@ -210,7 +210,6 @@ public class Calculator extends Activity implements OnClickListener {
         view.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontPixelSize*ratio);
     }
 
-    @Override
     public void onClick(View v) {
         if (v.getId() == R.id.cal2_ok) {
             String result = mLogic.getNumbericResult();

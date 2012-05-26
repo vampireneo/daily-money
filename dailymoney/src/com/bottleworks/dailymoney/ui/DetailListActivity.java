@@ -76,7 +76,6 @@ public class DetailListActivity extends ContextsActivity implements OnClickListe
         initialIntent();
         initialContent();
         GUIs.delayPost(new Runnable() {
-            @Override
             public void run() {
                 reloadData();
             }
@@ -105,7 +104,6 @@ public class DetailListActivity extends ContextsActivity implements OnClickListe
         yearDateFormat = new SimpleDateFormat("yyyy");
         
         detailListHelper = new DetailListHelper(this, i18n,calHelper,true, new DetailListHelper.OnDetailListener() {
-            @Override
             public void onDetailDeleted(Detail detail) {
                 GUIs.shortToast(DetailListActivity.this, i18n.string(R.string.msg_detail_deleted));
                 reloadData();
@@ -141,7 +139,6 @@ public class DetailListActivity extends ContextsActivity implements OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == Constants.REQUEST_DETAIL_EDITOR_CODE && resultCode==Activity.RESULT_OK){
             GUIs.delayPost(new Runnable(){
-                @Override
                 public void run() {
                     reloadData();
                 }});
@@ -255,7 +252,6 @@ public class DetailListActivity extends ContextsActivity implements OnClickListe
             double other;
             int count;
             
-            @Override
             public void run() {
                 data = idp.listDetail(start,end,getContexts().getPrefMaxRecords());
                 count = idp.countDetail(start, end);
@@ -382,7 +378,6 @@ public class DetailListActivity extends ContextsActivity implements OnClickListe
         return super.onContextItemSelected(item);
     }
 
-    @Override
     public void onClick(View v) {
         if (v.getId() == R.id.detlist_prev) {
             onPrev();

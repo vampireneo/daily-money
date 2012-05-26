@@ -138,7 +138,6 @@ public class GUIs {
     }
     static public void delayPost(final Runnable r,final long delay){
         delayPostExecutor.submit(new Runnable(){
-            @Override
             public void run() {
                 try {
                     Thread.sleep(delay);
@@ -187,7 +186,6 @@ public class GUIs {
         singleExecutor.submit(br);
         
         guiHandler.post(new Runnable(){
-            @Override
             public void run() {
                 try {
                     Thread.sleep(100);
@@ -206,7 +204,6 @@ public class GUIs {
         public NothrowRunnable(Runnable r){
             this.r = r;
         }
-        @Override
         public void run() {
             try{
                 r.run();
@@ -227,7 +224,6 @@ public class GUIs {
             this.run = run;
         }
         
-        @Override
         public void run() {
             try{
                 run.run();
@@ -240,7 +236,6 @@ public class GUIs {
                 }
                 if(run instanceof IBusyRunnable){
                    post(new Runnable(){
-                        @Override
                         public void run() {
                             ((IBusyRunnable)run).onBusyFinish();                        
                         }});
@@ -255,14 +250,12 @@ public class GUIs {
                 }
                 if(run instanceof IBusyRunnable){
                     post(new Runnable(){
-                        @Override
                         public void run() {
                             ((IBusyRunnable)run).onBusyError(x);                        
                         }});
                 }
             }
             post(new Runnable(){
-                @Override
                 public void run() {
                     if (context instanceof Activity) {
                         releaseOrientation((Activity) context);
@@ -280,10 +273,8 @@ public class GUIs {
     }
     
     public static abstract class BusyAdapter implements IBusyRunnable{
-        @Override
         public void onBusyFinish() {
         }
-        @Override
         public void onBusyError(Throwable t) {
             Logger.e(t.getMessage(),t);
         }
@@ -295,7 +286,6 @@ public class GUIs {
         //for event
         final DatePickerDialog[] s = new DatePickerDialog[1];
         DatePickerDialog picker = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener(){
-            @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 c.set(Calendar.YEAR,year);
                 c.set(Calendar.MONTH,monthOfYear);

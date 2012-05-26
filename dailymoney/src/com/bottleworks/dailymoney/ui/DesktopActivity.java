@@ -267,7 +267,6 @@ public class DesktopActivity extends ContextsActivity implements OnTabChangeList
         infoCumulativeCash.setText(i18n.string(R.string.label_cumulative_cash,getContexts().toFormattedMoneyString(b)));
     }
 
-    @Override
     public void onTabChanged(String tabId) {
         currTab = tabId;
         loadDesktop();
@@ -310,7 +309,6 @@ public class DesktopActivity extends ContextsActivity implements OnTabChangeList
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
     public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
         
         //item clicked in grid view
@@ -347,7 +345,6 @@ public class DesktopActivity extends ContextsActivity implements OnTabChangeList
             }else{
                 protectionPassed = true;
                 GUIs.delayPost(new Runnable(){
-                    @Override
                     public void run() {
                         dtLayout.setVisibility(View.VISIBLE);
                         loadWhatisNew();
@@ -369,7 +366,6 @@ public class DesktopActivity extends ContextsActivity implements OnTabChangeList
             this.dtitem = dtitem;
         }
         
-        @Override
         public boolean onMenuItemClick(MenuItem item) {
             lastClickedItem = dtitem;
             lastClickedItem.run();

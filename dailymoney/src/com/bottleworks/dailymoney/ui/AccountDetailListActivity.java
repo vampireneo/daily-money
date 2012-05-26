@@ -55,7 +55,6 @@ public class AccountDetailListActivity extends ContextsActivity {
         initialIntent();
         initialContent();
         GUIs.delayPost(new Runnable() {
-            @Override
             public void run() {
                 reloadData();
             }
@@ -90,7 +89,6 @@ public class AccountDetailListActivity extends ContextsActivity {
     private void initialContent() {
         
         detailListHelper = new DetailListHelper(this, i18n,calHelper,true,new DetailListHelper.OnDetailListener() {
-            @Override
             public void onDetailDeleted(Detail detail) {
                 GUIs.shortToast(AccountDetailListActivity.this, i18n.string(R.string.msg_detail_deleted));
                 reloadData();
@@ -110,7 +108,6 @@ public class AccountDetailListActivity extends ContextsActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == Constants.REQUEST_DETAIL_EDITOR_CODE && resultCode==Activity.RESULT_OK){
             GUIs.delayPost(new Runnable(){
-                @Override
                 public void run() {
                     reloadData();
                     setResult(RESULT_OK);
@@ -127,7 +124,6 @@ public class AccountDetailListActivity extends ContextsActivity {
             @SuppressWarnings("unchecked")
             List<Detail> data = Collections.EMPTY_LIST;
             int count = 0;
-            @Override
             public void run() {
                 if(target instanceof Account){
                     data = idp.listDetail((Account)target,IDataProvider.LIST_DETAIL_MODE_BOTH,startDate,endDate,getContexts().getPrefMaxRecords());

@@ -120,13 +120,11 @@ public class AccountEditorActivity extends ContextsActivity implements android.v
             typeEditor.setSelection(selpos);
         }
         typeEditor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 AccountType type = AccountType.getSupportedType()[typeEditor.getSelectedItemPosition()];
                 onTypeChanged(type);
             }
 
-            @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
@@ -157,7 +155,6 @@ public class AccountEditorActivity extends ContextsActivity implements android.v
         onTypeChanged(AccountType.getSupportedType()[selpos]);
     }
     
-    @Override
     public void onClick(View v) {
         if (v.getId() == R.id.acceditor_ok) {
             doOk();
@@ -282,7 +279,6 @@ public class AccountEditorActivity extends ContextsActivity implements android.v
     }
     
     class AccountTypeViewBinder implements SimpleAdapter.ViewBinder{
-        @Override
         public boolean setViewValue(View view, Object data, String text) {
             
             NamedItem item = (NamedItem)data;

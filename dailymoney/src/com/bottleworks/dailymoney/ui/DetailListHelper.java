@@ -103,7 +103,6 @@ public class DetailListHelper implements OnItemClickListener{
 
 
 
-    @Override
     public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
         if(parent == listView){
             doEditDetail(pos);
@@ -200,7 +199,6 @@ public class DetailListHelper implements OnItemClickListener{
         AccountType last = null;
         AccountType lastFrom = null;
         AccountType lastTo = null;
-        @Override
         public boolean setViewValue(View view, Object data, String text) {
             NamedItem item = (NamedItem)data;
             String name = item.getName();

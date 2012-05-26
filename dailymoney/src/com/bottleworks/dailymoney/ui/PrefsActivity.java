@@ -39,7 +39,6 @@ public class PrefsActivity extends PreferenceActivity implements OnSharedPrefere
         PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
     }
 
-    @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         dirty = true;
     }

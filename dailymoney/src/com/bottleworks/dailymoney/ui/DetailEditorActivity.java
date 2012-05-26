@@ -225,7 +225,6 @@ public class DetailEditorActivity extends ContextsActivity implements android.vi
         reloadSpinnerData();
 
         fromEditor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 IndentNode tn = fromAccountList.get(pos);
                 if(tn.getAccount()!=null){
@@ -233,13 +232,11 @@ public class DetailEditorActivity extends ContextsActivity implements android.vi
                 }
             }
 
-            @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
 
         toEditor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 IndentNode tn = toAccountList.get(pos);
                 if(tn.getAccount()!=null){
@@ -247,7 +244,6 @@ public class DetailEditorActivity extends ContextsActivity implements android.vi
                 }
             }
 
-            @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
@@ -353,7 +349,6 @@ public class DetailEditorActivity extends ContextsActivity implements android.vi
         dateEditor.setText(format.format(d));
     }
 
-    @Override
     public void onClick(View v) {
         CalendarHelper cal = getContexts().getCalendarHelper();
         if (v.getId() == R.id.deteditor_ok) {
@@ -382,7 +377,6 @@ public class DetailEditorActivity extends ContextsActivity implements android.vi
             try {
                 Date d = format.parse(dateEditor.getText().toString());
                 GUIs.openDatePicker(this, d, new GUIs.OnFinishListener() {
-                    @Override
                     public boolean onFinish(Object data) {
                         updateDateEditor((Date) data);
                         return true;
@@ -624,7 +618,6 @@ public class DetailEditorActivity extends ContextsActivity implements android.vi
             return null;
         }
         
-        @Override
         public boolean setViewValue(View view, Object data, String text) {
             
             NamedItem item = (NamedItem)data;

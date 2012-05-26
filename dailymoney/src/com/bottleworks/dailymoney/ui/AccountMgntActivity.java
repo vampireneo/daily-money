@@ -95,7 +95,6 @@ public class AccountMgntActivity extends ContextsActivity implements OnTabChange
         listViewAdapter = new SimpleAdapter(this, listViewMapList, R.layout.accmgnt_item, bindingFrom, bindingTo);
         listViewAdapter.setViewBinder(new SimpleAdapter.ViewBinder(){
 
-            @Override
             public boolean setViewValue(View view, Object data, String text) {
                 NamedItem item = (NamedItem)data;
                 String name = item.getName();
@@ -152,7 +151,6 @@ public class AccountMgntActivity extends ContextsActivity implements OnTabChange
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == Constants.REQUEST_ACCOUNT_EDITOR_CODE && resultCode==Activity.RESULT_OK){
             GUIs.delayPost(new Runnable(){
-                @Override
                 public void run() {
                     reloadData();
                 }});
@@ -179,7 +177,6 @@ public class AccountMgntActivity extends ContextsActivity implements OnTabChange
         listViewAdapter.notifyDataSetChanged();
     }
 
-    @Override
     public void onTabChanged(String tabId) {
         currTab = tabId;
         reloadData();
@@ -264,7 +261,6 @@ public class AccountMgntActivity extends ContextsActivity implements OnTabChange
         startActivityForResult(intent,Constants.REQUEST_ACCOUNT_EDITOR_CODE);
     }
 
-    @Override
     public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
         if(parent == listView){
             doEditAccount(pos);

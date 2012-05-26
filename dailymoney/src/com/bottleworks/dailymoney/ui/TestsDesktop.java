@@ -87,13 +87,11 @@ public class TestsDesktop extends AbstractDesktop {
         
         
         addItem(new DesktopItem(new Runnable(){
-            @Override
             public void run() {
                 Contexts.instance().getDataProvider().reset();
                 GUIs.shortToast(activity,"reset data provider");
             }}, "rest data provider",R.drawable.dtitem_test));
         addItem(new DesktopItem(new Runnable(){
-            @Override
             public void run() {
                 testFirstDayOfWeek();
             }}, "first day of week",R.drawable.dtitem_test){
@@ -101,38 +99,31 @@ public class TestsDesktop extends AbstractDesktop {
         
         
         addItem(new DesktopItem(new Runnable(){
-            @Override
             public void run() {
                 testCreateTestdata(1);
             }}, "test data1",R.drawable.dtitem_test));
         addItem(new DesktopItem(new Runnable(){
-            @Override
             public void run() {
                 testCreateTestdata(25);
             }}, "test data25",R.drawable.dtitem_test));
         addItem(new DesktopItem(new Runnable(){
-            @Override
             public void run() {
                 testCreateTestdata(50);
             }}, "test data50",R.drawable.dtitem_test));
         addItem(new DesktopItem(new Runnable(){
-            @Override
             public void run() {
                 testCreateTestdata(100);
             }}, "test data100",R.drawable.dtitem_test));
         addItem(new DesktopItem(new Runnable(){
-            @Override
             public void run() {
                 testCreateTestdata(200);
             }}, "test data200",R.drawable.dtitem_test));
         addItem(new DesktopItem(new Runnable(){
-            @Override
             public void run() {
                 testJust();
             }}, "just test",R.drawable.dtitem_test));
         
         DesktopItem padding = new DesktopItem(new Runnable(){
-            @Override
             public void run() {
                 
             }}, "padding",R.drawable.dtitem_test);
@@ -174,7 +165,6 @@ public class TestsDesktop extends AbstractDesktop {
             public void onBusyFinish() {
                 GUIs.shortToast(activity,"create test data");
             }
-            @Override
             public void run() {
                 IDataProvider idp = Contexts.instance().getDataProvider();
                 new DataCreator(idp,i18n).createTestData(loop);
