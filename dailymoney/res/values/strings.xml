@@ -113,7 +113,7 @@
     <string name="label_prefs_backupcsv">Backup CSV</string>
     <string name="label_prefs_backupcsv_sum">Backup old CSV when doing export</string>
     
-    <string name="qmsg_clear_folder">Do you want to clear working folder %1$s? all CSV will be removed</string>
+    <string name="qmsg_clear_folder">Do you want to clear working folder %1$s? all CSV and BAK will be removed</string>
     <string name="defacc_creditcard">Credit card</string>
     
     <string name="label_account">Account</string>
@@ -220,19 +220,13 @@
     <string name="label_firstday_sat">Saturday</string>
 
     <!-- from 20120427 by Lancelot Liu -->
-    <string name="label_backup_db_to_sd">Backup to SD card</string>
+    <string name="label_backup_db2sd">Backup data to SD card</string>
     <string name="msg_db_backuped">%1$s files backup to %2$s</string>
-    <string name="msg_no_db">There is no file to backup</string>
-    <string name="label_prefs_lastbackup">Last Backup Time</string>
+    <string name="msg_no_db">There is no data to backup</string>
+    <string name="label_prefs_lastbackup">Last Data Backup Time</string>
     
-    <!-- from 20111120 for installment by lancelot -->
-    <string name="defacc_installments_payable">Installments Payable</string>
-    <string name="puitem_year">Y</string>
-    <string name="puitem_month">M</string>
-    <string name="puitem_day">D</string>
-    <string name="label_installments">Installments</string>
-    <string name="label_repeat">Repeat</string>
-    <string name="label_period">Period</string>
-    <string name="label_periods">Number of periods</string>
+    <!-- from 2012802 by dennis-->
+    <string name="msg_db_retored">Data was restored, welcome back!</string>
+    <string name="qmsg_retore_db">It looks like you have Daily Money data backup in SD card, do you want to restore it (all current data will be replaced) ?</string>
 </resources>
 
